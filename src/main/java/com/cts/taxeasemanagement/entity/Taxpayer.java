@@ -7,6 +7,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "taxpayer")
@@ -48,4 +50,7 @@ public class Taxpayer {
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
+
+    @OneToMany(mappedBy = "taxpayer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TaxFilling> taxFillings = new ArrayList<>();
 }
