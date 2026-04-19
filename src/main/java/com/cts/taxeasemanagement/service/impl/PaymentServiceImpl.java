@@ -1,5 +1,4 @@
-package com.cts.taxeasemanagement.service;
-
+package com.cts.taxeasemanagement.service.impl;
 
 import com.cts.taxeasemanagement.dao.PaymentRepository;
 import com.cts.taxeasemanagement.dao.RevenueRecordRepository;
@@ -12,6 +11,8 @@ import com.cts.taxeasemanagement.entity.RevenueRecord;
 import com.cts.taxeasemanagement.entity.TaxFilling;
 import com.cts.taxeasemanagement.entity.entityEnum.PaymentMethod;
 import com.cts.taxeasemanagement.entity.entityEnum.StatusBasic;
+import com.cts.taxeasemanagement.service.AuditLogService;
+import com.cts.taxeasemanagement.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,7 +46,7 @@ public class PaymentServiceImpl implements PaymentService {
                 .filing(filing)
                 .paymentMethod(method)
                 .amount(amount)
-                .status(status)
+                .status(status != null ? status : StatusBasic.Pending)
                 .build();
 
         payment = paymentRepository.save(payment);
