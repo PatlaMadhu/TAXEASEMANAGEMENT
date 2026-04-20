@@ -11,8 +11,6 @@ import com.cts.taxeasemanagement.entity.entityEnum.NotificationStatus;
 import com.cts.taxeasemanagement.service.AuditLogService;
 import com.cts.taxeasemanagement.service.NotificationService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +25,6 @@ public class NotificationServiceImpl implements NotificationService {
     private final UserRepository userRepository;
     private final AuditLogService auditLogService;
 
-    private  final ModelMapper modelMapper ;
 
     @Override
     @Transactional
